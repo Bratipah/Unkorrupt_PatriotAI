@@ -1,0 +1,43 @@
+.badge-page {
+    display: grid;
+    place-items: center; /* Centers both horizontally and vertically */
+    min-height: 100vh; /* Ensures full viewport height */
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .badge-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .back-button {
+    background-color: #a020f0;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .badge-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .badge-item {
+    background-color: #e0e0e0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  

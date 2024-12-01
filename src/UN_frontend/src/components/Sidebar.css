@@ -1,0 +1,71 @@
+/* src/components/Sidebar.css */
+.sidebar {
+    /* position: fixed;    */
+    height: 40%;
+    width: 60px;
+    background-color: #A020F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;    
+    padding: 20px 15px;
+    vertical-align: middle;
+    border-radius: 30px;
+  }
+ 
+  .sidebar-icon {
+    color: white;
+    font-size: 24px;
+    margin: 20px 0;
+    transition: color 0.3s ease;
+  }
+  
+  .sidebar-icon:hover {
+    color: white;
+    content: attr(data-tooltip);
+  }
+  
+  /* src/components/Layout.css */
+  .layout {
+    display: flex;
+  }
+  
+  .content {
+    margin-left: 60px; /* Match the width of the sidebar */
+    padding: 20px;
+    width: calc(100% - 60px);
+  }
+  
+
+
+/* Center the sidebar vertically on the full page */
+.sidebar-container {
+    display: flex;
+    justify-content: center; /* Center the sidebar vertically on the full page */
+    height: 100vh; /* Full viewport height */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      width: 100%;
+      height: 60px;
+      flex-direction: row; 
+      padding: 10px; 
+      align-items: center; 
+      height: 100vh;
+      border-radius: 30px;     
+
+  }
+
+  .sidebar-icon {
+      /* margin: 0 15px;  */
+      
+  }
+
+  .content {
+      margin-left: 0;
+      /* padding-top: 60px;  */
+      width: 100%;      
+      align-items: center;
+  }
+}

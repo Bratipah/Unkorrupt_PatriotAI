@@ -1,0 +1,222 @@
+.progress-container {
+    display: flex;
+    max-width: 1200px;
+    flex-direction:column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  
+  .everything {
+    display: flex;
+    justify-content: center; 
+    width: 100%; /* Ensures the container occupies the full width */
+    min-height: 100vh; /* Covers the full viewport height */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin: 0; /* Remove margin to avoid offset from the edges */
+}
+
+  .progress-header {
+    width: 100%;
+    padding: 20px;
+    background-color: #a020f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 30px 30px;
+    box-sizing: border-box;
+  }
+  
+  .back-icon,
+  .message-icon {
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .profile-avatar {
+    background-image: url("../assets/profile.svg");
+    background-size: cover;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin: -50px 0 10px;
+  }
+  
+  h1 {
+    color: #000;
+    margin: 10px 0;
+    font-size: 24px;
+  }
+  
+  .toggle-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 20px 0;
+  }
+  
+  .toggle-button {
+    width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    border: 2px solid #a020f0;
+    color: #a020f0;
+    background-color: white;
+  }
+  
+  .toggle-button.active {
+    background-color: #a020f0;
+    color: white;
+  }
+  
+  .course-progress {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .course-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+  }
+  
+  .progress-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px solid #a020f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a020f0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .progress-circle span {
+    font-size: 16px;
+    color: #000;
+  }
+  
+  .course-item p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #000;
+  }
+  
+  @media (max-width: 768px) {
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    .toggle-button {
+      width: 100px;
+      font-size: 14px;
+    }
+  
+    .course-item {
+      width: 80px;
+    }
+  
+    .progress-circle {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .profile-avatar {
+      width: 60px;
+      height: 60px;
+    }
+    .everything{
+      flex-direction: column; 
+      width: 100%;
+    }
+    
+    h1 {
+      font-size: 18px;
+    }
+  
+    .toggle-button {
+      width: 80px;
+      font-size: 12px;
+    }
+  
+    .course-item {
+      width: 60px;
+    }
+  
+    .progress-circle {
+      width: 50px;
+      height: 50px;
+      font-size: 14px;
+    }
+  
+    .progress-circle span {
+      font-size: 12px;
+    }
+  }
+  
+  @media (min-width: 1920px) {
+    .everything {
+        /* Adjustments for large screens */
+        padding: 40px;   /* Increase padding for better spacing */
+        font-size: 1.5rem; /* Increase base font size for readability */
+    }
+
+    .progress-header {
+        padding: 30px; /* Increase header padding for larger screens */
+    }
+
+    .toggle-buttons {
+        width: 90%; /* Adjust toggle buttons width for larger screens */
+    }
+
+    .toggle-button {
+        font-size: 18px; /* Increase font size for better visibility */
+        padding: 15px; /* Increase padding for larger touch targets */
+    }
+
+    .course-progress {
+        gap: 30px; /* Increase gap between course items for better spacing */
+    }
+
+    .course-item {
+        width: 150px; /* Increase item width for larger screens */
+    }
+
+    .progress-circle {
+        width: 100px; /* Increase circle size for better visibility */
+        height: 100px;
+        font-size: 22px; /* Increase font size inside circles */
+    }
+
+    .progress-circle span {
+        font-size: 18px; /* Increase span font size for readability */
+    }
+
+    .course-item p {
+        font-size: 16px; /* Increase paragraph font size for readability */
+    }
+}

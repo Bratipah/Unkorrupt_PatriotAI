@@ -1,0 +1,127 @@
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.form-container {
+  max-width: 1200px;
+  background: #fff;
+  padding: 50px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #333;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+
+.containerf {
+  display: flex;
+  justify-content: center;
+  /* This centers the container horizontally */
+  min-height: 100vh;
+  margin: auto;
+  padding: 20px;
+  height: 100vh;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea,
+.form-group input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #A020F0;
+  /* Purple border */
+  border-radius: 8px;
+  /* Rounded corners */
+  box-sizing: border-box;
+  /* Ensures padding does not affect the width */
+  background-color: #f9f9f9;
+  /* Light background color */
+  color: #333;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input[type="file"]:focus {
+  border-color: #800080;
+  /* Darker purple on focus */
+  background-color: #fff;
+  /* White background on focus */
+  outline: none;
+  /* Remove default focus outline */
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: none;
+  /* Prevents resizing */
+}
+
+#send-button {
+  background: #A020F0;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+  /* Rounded corners */
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+#send-button:hover {
+  background: darkviolet;
+}
+
+.back-link {
+  display: block;
+  margin-bottom: 20px;
+  color: #A020F0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 90%;
+    height: 100vh;
+    justify-content: space-between;    
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    width: 100%;
+  
+  }
+
+  .containerf {
+    flex-direction: column; 
+    /* height: 100vh;  */
+    
+  }
+}

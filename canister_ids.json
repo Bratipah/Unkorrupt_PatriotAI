@@ -1,0 +1,11 @@
+{
+  "UN_backend": {
+    "ic": "k6xdg-kyaaa-aaaak-ak3ua-cai"
+  },
+  "UN_frontend": {
+    "ic": "kzwfs-haaaa-aaaak-ak3uq-cai"
+  },
+  "icrc1_ledger_canister": {
+    "ic": "e7ns7s-caaaa-aaaak-ak5ja-cai"
+  }
+}

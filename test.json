@@ -1,0 +1,77 @@
+{
+  "id": "chatcmpl-9wZuF07JqkwGiu332KfPzwfY8vzGP",
+  "object": "chat.completion",
+  "created": 1723748075,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "```json{
+          "title": "Understanding Corruption",
+          "description": "A comprehensive overview of corruption, including its definition, types (grand, petty, systemic), and far-reaching consequences on individuals, societies, and economies.",
+          "resources": [
+            {
+              "title": "Corruption: What It Is and How to Fight It",
+              "description": "This book provides an in-depth analysis of corruption, its types, and strategies to combat it.",
+              "url": "https://www.worldbank.org/en/topic/governance/brief/anti-corruption",
+              "rType": "Book"
+            },
+            {
+              "title": "The Impact of Corruption on Economic Development",
+              "description": "An article discussing how corruption affects economic growth and societal trust.",
+              "url": "https://www.imf.org/en/Publications/WP/Issues/2016/12/31/The-Impact-of-Corruption-on-Economic-Development-42964",
+              "rType": "Article"
+            }
+          ],
+          "multipleChoiceQuestions": [
+            {
+              "question": "What is the definition of corruption?",
+              "options": [
+                {
+                  "option": "a",
+                  "text": "Abuse of power for personal gain"
+                },
+                {
+                  "option": "b",
+                  "text": "The promotion of fairness and equity"
+                },
+                {
+                  "option": "c",
+                  "text": "Compliance with laws and regulations"
+                },
+                {
+                  "option": "d",
+                  "text": "An economic incentive for public officials"
+                }
+              ],
+              "correctAnswer": "a",
+              "explanation": "Corruption is typically defined as the abuse of power by government officials for illicit gain, which undermines trust in public institutions."
+            },
+            {
+              "question": "Which type of corruption is characterized by small-scale bribery?",
+              "options": [
+                {
+                  "option": "a",
+                  "text": "Grand corruption"
+                },
+                {
+                  "option": "b",
+                  "text": "Petty corruption"
+                },
+                {
+                  "option": "c",
+                  "text": "Systemic corruption"
+                },
+                {
+                  "option": "d",
+                  "text": "Political corruption"
+                }
+              ],
+              "correctAnswer": "b",
+              "explanation": "Petty corruption refers to small-scale bribery and corruption typically seen in day-to-day interactions between public officials and individuals."
+            }
+          ]
+        }
+```", "refusal": null}, "logprobs": null, "finish_reason": "stop"}], "usage": {"prompt_tokens": 228, "completion_tokens": 484, "total_tokens": 712}, "system_fingerprint": "fp_48196bc67a"}

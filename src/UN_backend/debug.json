@@ -1,0 +1,41 @@
+{
+  "id": "chatcmpl-9zfwwQnnDC1MwgAiYUcQyHWCbyplc",
+  "object": "chat.completion",
+  "created": 1724486290,
+  "model": "gpt-4o-mini-2024-07-18",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": {
+          "title": "Introduction to Anti-Corruption Principles",
+          "description": "This course provides an overview of the fundamental principles and mechanisms for combating corruption in both public and private sectors. Topics will include the definition of corruption, its forms and impacts, frameworks for anti-corruption legislation, and the role of various stakeholders in promoting integrity and transparency. Students will engage with case studies and practical tools to recognize and address corruption effectively.",
+          "resources": [
+            {
+              "title": "Corruption Prevention: A Guide for Practitioners",
+              "description": "This guide provides practical approaches for preventing corruption in public administration and outlines strategies for implementing anti-corruption measures.",
+              "url": "https://www.oecd.org/corruption/ethics/Corruption-Prevention.pdf",
+              "rType": "Report"
+            },
+            {
+              "title": "Anti-Corruption: A Fighting chance",
+              "description": "This video highlights the importance of anti-corruption initiatives and discusses various effective strategies to combat corruption at different levels.",
+              "url": "https://www.youtube.com/watch?v=6I13GSvfVKM",
+              "rType": "Video"
+            }
+          ]
+        },
+        "refusal": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 191,
+    "completion_tokens": 249,
+    "total_tokens": 440
+  },
+  "system_fingerprint": "fp_db4a9208a8"
+}

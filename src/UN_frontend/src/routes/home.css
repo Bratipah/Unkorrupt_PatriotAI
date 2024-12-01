@@ -1,0 +1,1500 @@
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.hbody {
+    margin: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+    display: flex;
+
+    flex-direction: column;
+}
+
+/* Main Container */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background-color: white;
+    width: 100%;
+    scroll-behavior: smooth;
+    padding: 150px;
+    padding-top: 10px;
+    
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 5px;
+    position: relative;
+    z-index: 10;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.header .logo .patriot-ai {
+    font-size: 1.5rem;
+    color: #A020F0;
+    font-weight: bold;
+}
+
+.header .nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: smaller;
+}
+
+.header .btn-primary {
+    background-color: #A020F0;
+    color: #fff;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: smaller;
+}
+
+.btn-primary:hover {
+    background-color: #5b1491;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.hero .hero-content {
+    max-width: 600px;
+    color: black;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+.hero p {
+    margin-bottom: 20px;
+}
+
+.hero .hero-actions .btn-secondary {
+    background-color: #A020F0;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.hero .hero-actions .btn-link {
+    color: #A020F0;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5b1491;
+}
+
+.hero img {
+    height: 500px;
+    max-width: 100%;
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    margin: 0;
+    max-width: 100%;
+    width: 100vw;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.section-title img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.section-title h2 {
+    color: #A020F0;
+    margin-bottom: 10px;
+}
+
+.section-title h3 {
+    color: black;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.section-title p {
+    color: black;
+    margin-bottom: 10px;
+}
+
+/* Partners */
+.partners {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.partners img {
+    height: 100px;
+    margin: 0 20px;
+}
+
+/* Benefits */
+.benefits {
+    padding: 40px 20px;
+    margin-bottom: 40px;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: flex-start;
+    color: black;
+}
+
+.benefits h3 {
+    margin-bottom: 20px;
+}
+
+.benefits ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin: 0;
+}
+
+.benefits ul li {
+    margin-bottom: 10px;
+}
+
+.benefits ul li p {
+    margin: 5px 0 0;
+}
+
+/* Testimonials */
+.testimonials {
+    padding: 60px 20px;
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+}
+
+.testimonials h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #A020F0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.testimonials p {
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.testimonials .testimonial {
+    background-color: #262626;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    max-width: 300px;
+    margin: 10px auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonials .testimonial img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.testimonials .testimonial span {
+    display: block;
+    font-size: 0.875rem;
+    color: #a1a1aa;
+    margin-top: 10px;
+}
+
+.testimonials .testimonial strong {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.testimonials .testimonial .highlight {
+    color: #a78bfa;
+    font-weight: 600;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* FAQ Section */
+.faq {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    color: #333333;
+    text-align: center;
+}
+
+.faq h2 {
+    font-weight: 600;
+    font-size: 1.75rem;
+    color: #A020F0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+}
+
+.faq p {
+    color: #6b7280;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.faq .faq-item {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    text-align: left;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.faq .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #111827;
+    cursor: pointer;
+}
+
+.faq .faq-question:hover {
+    color: #6b7280;
+}
+
+.faq .faq-answer {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* Call to Action */
+.cta {
+    background-color: #A020F0;
+    color: #fff;
+    text-align: center;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    margin: 40px auto;
+    max-width: 800px;
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    margin-top: 10px;       
+    white-space: nowrap; /* Prevents the text from wrapping to a new line */
+
+    
+}
+
+.cta p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.cta .btn-primary {
+    background-color: #fff;
+    color: #A020F0;
+    padding: 12px 24px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn-primary:hover {
+    background-color: #5b1491;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-size: smaller;
+}
+
+.footer .footer-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer .footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.footer .footer-links a:hover {
+    color: #7e22ce;
+}
+
+.footer .footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer .footer-logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.footer .footer-logo span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #A020F0;
+}
+
+.footer .social-links {
+    margin-top: 20px;
+}
+
+.footer .social-links a {
+    margin: 0 10px;
+    color: #6b7280;
+    font-size: 1.5rem;
+}
+
+.footer .social-links a:hover {
+    color: #A020F0;
+}
+
+/* Listings */
+.listing {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.listing img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.listing div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header .nav {
+        display: none;
+        flex-direction: column;
+        position: static;
+        background-color: transparent;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .container {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .hero .hero-content {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .hero img {
+        height: auto;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .section-title,
+    .benefits,
+    .testimonials,
+    .faq,
+    .cta,
+    .footer {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .benefits {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .benefits img {
+        margin-bottom: 20px;
+    }
+
+    .testimonials-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 90%;
+    }
+
+    .footer .footer-links {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .footer .footer-logo {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 621px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .menu-toggle {
+        margin-bottom: 15px;
+    }
+
+    .nav {
+        width: 100%;
+        margin: 0;
+    }
+
+    .btn-primary {
+        display: block;
+        margin: 15px auto;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* padding: 10px; */
+        text-align: center;
+        width: 100%;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 0;
+    }
+
+    .hero .hero-content {
+        max-width: 100%;
+        margin: 0 auto 20px;
+    }
+
+    .hero img {
+        width: 100%;
+        height: auto;
+        max-width: 350px;
+        margin: 0 auto 20px;
+    }
+    body, html {
+        background-color: black;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title,
+    .benefits,
+    .testimonials,
+    .faq,
+    .cta,
+    .footer {
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .benefits {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .benefits img {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .benefits ul {
+        text-align: center;
+        padding: 0;
+    }
+
+    .testimonials-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-width: 90%;
+    }
+
+    .testimonials .testimonial {
+        max-width: 90%;
+        margin: 10px auto;
+    }
+
+    .footer .footer-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .footer .footer-logo {
+        margin-bottom: 10px;
+    }
+
+    .footer .social-links a {
+        font-size: 1.25rem;
+    }
+
+    .cta {
+        width: 80%;
+        padding: 10px 10px;
+        margin: 20px auto;
+        max-width: 400px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .cta h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+
+    .cta p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .cta .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+}
+
+
+.dark-mode .hbody {
+    background-color: #121212; /* Dark mode background color */
+    color: white; /* Dark mode text color */
+}
+
+.container {
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    margin: auto;
+    box-sizing: border-box; 
+    background-color: white; 
+}
+
+.dark-mode .container {
+    background-color: #121212; /* Dark mode container background */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.header .logo .patriot-ai { 
+    font-size: 1.75rem;
+    color: #A020F0;
+    font-weight: bold;
+}
+
+.dark-mode .header .logo .patriot-ai {
+    color: #bb86fc; /* Softer purple for dark mode */
+}
+
+.header .nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.dark-mode .header .nav a {
+    color: white; /* Light text for dark mode */
+}
+
+.header .btn-primary {
+    background-color: #A020F0;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #5b1491;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.hero .hero-content {
+    max-width: 600px;
+    color: black; /* Default text color */
+}
+
+.dark-mode .hero .hero-content {
+    color: white; /* Light text for dark mode */
+}
+
+.dark-mode .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.hero p {
+    margin-bottom: 20px;
+}
+
+.hero .hero-actions .btn-secondary {
+    background-color: #A020F0;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.hero .hero-actions .btn-link {
+    text-decoration: none;
+    color: #A020F0;
+}
+
+.dark-mode .hero .hero-actions .btn-link {
+    color: #bb86fc; /* Softer purple for dark mode */
+}
+
+.btn-secondary:hover {
+    background-color: #5b1491;
+}
+
+.hero img {
+    height: 500px; /* Increased size of the hero image */
+}
+
+.section-title {
+    text-align: center;
+    margin: 0;
+    max-width: 100%;
+    width: 100vw; /* Full width of the viewport */
+    box-sizing: border-box; /* Includes padding in the width/height */
+    background-color: white; 
+}
+
+.dark-mode .section-title {
+    background-color: #121212; /* Dark mode background */
+}
+
+.section-title h2 {
+    color: #A020F0;
+    margin-bottom: 10px;
+}
+
+.dark-mode .section-title h2 {
+    color: #bb86fc; /* Softer purple for dark mode */
+}
+
+.section-title h3 {
+    color: black;
+    margin-bottom: 10px;
+}
+
+.dark-mode .section-title h3 {
+    color: white; /* Light text for dark mode */
+}
+
+.section-title p {
+    color: black;
+    margin-bottom: 10px;
+}
+
+.dark-mode .section-title p {
+    color: white; /* Light text for dark mode */
+}
+
+.partners {
+    display: flex;
+    justify-content: space-around; /* Centers the logos */
+    margin: 20px 0;
+}
+
+.partners img {
+    height: 100px; /* Reduced size of the partner logos */
+    margin: 0 20px;
+}
+
+.benefits {
+    padding: 80px 40px;
+    margin-bottom: 40px;
+    
+    color: black;
+    background-color: white; 
+}
+
+.dark-mode .benefits {
+    background-color: black; /* Dark mode background */
+    color: white; /* Light text for dark mode */
+}
+
+.benefits h3 {
+    margin-bottom: 20px;
+}
+
+.benefits ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.benefits ul li {
+    margin-bottom: 20px;
+}
+
+.benefits ul li p {
+    margin: 5px 0 0;
+}
+
+
+.testimonials {
+    padding: 60px 20px;
+    background-color: white; /* Darker background for testimonials */
+    color: white;
+}
+
+.dark-mode .testimonials {
+    padding: 60px 20px;
+    background-color: black; /* Darker background for testimonials */
+    color: white;
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #A020F0; /* Purple color for the section title */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.testimonials p {
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: inherit; /* Ensure the paragraph color inherits from the parent */
+}
+
+.testimonials .testimonial {
+    background-color: #262626; /* Slightly lighter than the background */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 15px;
+    text-align: left;
+    color: inherit; /* Ensure the text color is consistent with parent */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 0 auto 20px auto; /* Center the testimonials */
+}
+
+.testimonials .testimonial img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.testimonials .testimonial span {
+    display: block;
+    font-size: 0.875rem;
+    color: #a1a1aa; /* Lighter gray for the name */
+    margin-top: 10px;
+}
+
+.testimonials .testimonial strong {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Updated .highlight styling to match paragraph style */
+.testimonials .testimonial .highlight {
+    color: inherit; /* Same color as the paragraph text */
+    font-weight: 500; /* Slightly bolder than regular text */
+    background-color: rgba(160, 32, 240, 0.5);
+    padding: 0 2px; /* Padding to create a subtle background effect */
+    border-radius: 2px; /* Rounded corners for a smooth effect */
+    display: inline; /* Inline display to blend with the text */
+    text-decoration: none; /* Remove any underline or default text decoration */
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+.faq {
+    padding: 60px 20px;
+    background-color: #ffffff; /* Light background */
+    color: #333333; /* Dark text color */
+    text-align: center;
+    
+}
+
+.dark-mode .faq {
+    background-color: #121212; /* Dark mode background */
+    color: white; /* Light text for dark mode */
+}
+
+.faq h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #A020F0; /* Purple color for the section title */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+}
+
+.dark-mode .faq h2 {
+    color: #bb86fc; /* Softer purple for dark mode */
+}
+
+.faq p {
+    color: #6b7280; /* Gray color for description */
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.dark-mode .faq p {
+    color: #b0b0b0; /* Lighter gray for dark mode */
+}
+
+.faq .faq-item {
+    background-color: #f9fafb; /* Light gray background for FAQ items */
+    border: 1px solid #e5e7eb; /* Border color */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    text-align: left;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .faq .faq-item {
+    background-color: #1e1e1e; /* Dark mode background for FAQ items */
+    border: 1px solid #3c3c3c; /* Darker border for dark mode */
+}
+
+.faq .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #111827; /* Darker text for question */
+    cursor: pointer;
+}
+
+.dark-mode .faq .faq-question {
+    color: white; /* Light text for dark mode */
+}
+
+.faq .faq-question:hover {
+    color: #6b7280; /* Hover effect */
+}
+
+.faq .faq-answer {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    color: #4b5563; /* Slightly lighter gray for the answer */
+    line-height: 1.6;
+}
+
+.dark-mode .faq .faq-answer {
+    color: #b0b0b0; /* Lighter gray for dark mode */
+}
+
+.faq .faq-question .icon {
+    transition: transform 0.3s ease;
+}
+
+.faq .faq-item.active .faq-question .icon {
+    transform: rotate(180deg); /* Rotate icon when active */
+}
+
+/* CTA Section */
+.cta {
+    background-color: #A020F0; /* Bright purple background for CTA */
+    color: #fff;
+    text-align: center;
+    padding: 8px 250px; /* Increased padding for emphasis */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    margin: 40px auto; /* Center the CTA with some margin */
+    max-width: 800px; /* Restrict max-width for better readability */
+}
+
+.cta h2 {
+    font-size: 1.5rem; /* Larger font size for the heading */
+    margin-bottom: 10px;
+    font-weight: 700; /* Bold font for emphasis */
+}
+
+.cta p {
+    margin-bottom: 20px;
+    font-size: 1rem; /* Slightly larger font for better readability */
+    font-weight: 400;
+}
+
+.cta .btn-primary {
+    background-color: #fff;
+    color: #A020F0; /* Button text color matching the CTA background */
+    padding: 5px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.cta .btn-primary:hover {
+    background-color:  #5b1491;
+}
+
+.dark-mode .cta {
+    background-color: #A020F0; /* Darker background for CTA */
+    color: white; /* Light text for dark mode */
+}
+
+.dark-mode .cta .btn-primary {
+    background-color: white; /* Button background for dark mode */
+    color: #A020F0; /* Text color matching dark mode theme */
+}
+
+.dark-mode .cta .btn-primary:hover {
+    background-color: #2a2a2a; /* Darker button background on hover */
+}
+
+/* Footer Section */
+.footer {
+    display: flex;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9fafb; /* Light gray background for footer */
+    color: #6b7280; /* Gray text color */
+    font-size: smaller;
+}
+
+.dark-mode .footer {
+    background-color: #1e1e1e; /* Darker background for footer */
+    color: white; /* Light text color for footer */
+}
+
+.footer .footer-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Ensure links wrap on smaller screens */
+    gap: 30px;
+}
+
+.footer .footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #6b7280; /* Gray color for links */
+    font-weight: 500;
+}
+
+.dark-mode .footer .footer-links a {
+    color: #bb86fc; /* Light link color for dark mode */
+}
+
+.footer .footer-links a:hover {
+    color: #7e22ce; /* Hover color matches the CTA button */
+}
+
+.footer .footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer .footer-logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.footer .footer-logo span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #A020F0 /* Logo text color matches CTA button */
+}
+
+.dark-mode .footer .footer-logo span {
+    color: #bb86fc; /* Softer purple for dark mode */
+}
+
+.footer .social-links {
+    margin-top: 20px;
+}
+
+.footer .social-links a {
+    margin: 0 10px;
+    color: #6b7280; /* Gray color for social icons */
+    font-size: 1rem;
+}
+
+.dark-mode .footer .social-links a {
+    color: #bb86fc; /* Softer purple for dark mode */
+}
+
+.footer .social-links a:hover {
+    color: #A020F0; /* Hover color matches the CTA button */
+}
+
+.dark-mode .footer .social-links a:hover {
+    color: #7e22ce; /* Hover color matches dark mode theme */
+}
+
+/* Updated CSS for Responsive Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 5px;
+    position: relative; /* For positioning the mobile menu */
+    z-index: 10; /* Ensure header is above other content */
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: smaller;
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 11; /* Ensure toggle is above the menu */
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+    /* Centering the Header Content */
+    .header {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center; /* Center-align text */
+    }
+ 
+
+    .header .nav {
+        display: none; /* Hide nav links initially on small screens */
+        flex-direction: column; /* Stack links vertically */
+        position: relative; /* Default position */
+        background-color: transparent; /* Transparent background for nav */
+        width: 100%; /* Full width */
+        margin: 20px 0; /* Margin for spacing */
+    }
+
+    .nav.active {
+        display: flex; /* Show nav links when menu is open */
+    }
+
+    .nav a {
+        color: white; /* White color for mobile menu links */
+        margin: 10px 0;
+        text-align: center; /* Center align the links */
+        padding: 10px 0; /* Add padding for better touch targets */
+    }
+
+    .menu-toggle {
+        display: block; /* Show toggle button on mobile screens */
+        margin: 10px 0; /* Space above the toggle */
+    }
+
+    /* Centering the Container Content */
+    .container {
+        justify-content: center; /* Center vertically */
+        align-items: center; /* Center horizontally */
+        text-align: center; /* Center text alignment */
+        padding: 20px; /* Padding for spacing */
+    }
+
+    /* Centering the Hero Section */
+    .hero {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        text-align: center; /* Center align text */
+        padding: 20px 0; /* Adjust padding */
+    }
+
+    .hero .hero-content {
+        max-width: 90%; /* Reduce width for better visibility */
+        margin-bottom: 20px; /* Space between content and image */
+    }
+
+    .hero img {
+        height: auto; /* Responsive height */
+        max-width: 100%; /* Responsive width */
+        margin-bottom: 20px; /* Space below the image */
+    }
+
+    /* Centering Section Titles */
+    .section-title,
+    .benefits,
+    .testimonials,
+    .faq,
+    .cta,
+    .footer {
+        text-align: center; /* Center text */
+        align-items: center; /* Center items */
+        justify-content: center; /* Center content */
+    }
+
+    /* Centering Benefits Section */
+    .benefits {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        padding: 20px; /* Adjust padding */
+    }
+    .benefits p{
+        width: 50%;
+    }
+
+    .benefits img {
+        margin-bottom: 20px; /* Space below image */
+    }
+
+  
+    /* Centering Testimonials Section */
+    .testimonials-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        gap: 20px; /* Space between testimonials */
+        max-width: 90%; /* Restrict max width */
+    }
+
+    /* Centering Footer Links */
+    .footer .footer-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 15px; /* Space between links */
+        margin-top: 10px; /* Margin above the links */
+    }
+
+    .footer .footer-logo {
+        margin-bottom: 10px; /* Margin below the logo */
+    }
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 621px) {
+    /* Centering the Header Content */
+    .header {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center; /* Center-align text */
+        padding: 15px 0; /* Reduce padding */
+    }
+
+    .logo {
+        margin-bottom: 10px; /* Add space below logo */
+    }
+
+    .menu-toggle {
+        margin-bottom: 15px; /* Add space below toggle */
+    }
+
+    .nav {
+        width: 100%; /* Full width */
+        margin: 0; /* Reset margin */
+    }
+
+    .btn-primary {
+        display: block; /* Show button */
+        margin: 15px auto; /* Center the button */
+    }
+
+    /* Centering the Container Content */
+    .container {
+        display: flex;
+        flex-direction: column; /* Stack content vertically */
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        padding: 10px; /* Reduce padding */
+        text-align: center; /* Center-align text */
+    }
+
+    /* Centering the Hero Section */
+    .hero {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        text-align: center; /* Center-align text */
+        padding: 30px 0; /* Reduce padding */
+    }
+
+    .hero .hero-content {
+        max-width: 100%; /* Full width */
+        margin: 0 auto 20px; /* Center and add margin */
+    }
+
+    .hero img {
+        width: 100%; /* Full width for the image */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 350px; /* Limit max width for better layout */
+        margin: 0 auto 20px; /* Center image and add margin */
+    }
+
+    .hero h1 {
+        font-size: 2.5rem; /* Reduce font size for better fit */
+    }
+
+    /* Centering Section Titles */
+    .section-title,
+    .benefits,
+    .testimonials,
+    .faq,
+    .cta,
+    .footer {
+        text-align: center; /* Center text */
+        align-items: center; /* Center items */
+        justify-content: center; /* Center content */
+        width: 100%; /* Full width */
+        margin: 0 auto; /* Center content */
+    }
+
+    /* Centering Benefits Section */
+    .benefits {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        padding: 20px; /* Adjust padding */
+        max-width: 100%; /* Full width */
+    }
+
+    .benefits img {
+        max-width: 90%; /* Make images responsive */
+        margin-bottom: 20px; /* Space below image */
+    }
+
+    .benefits ul {
+        text-align: center; /* Center text */
+        padding: 0; /* Remove padding */
+    }
+    
+
+    /* Centering Testimonials Section */
+    .testimonials-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center align items */
+        gap: 15px; /* Space between testimonials */
+        max-width: 90%; /* Restrict max width */
+    }
+
+    .testimonials .testimonial {
+        max-width: 90%; /* Reduce max width */
+        margin: 10px auto; /* Center each testimonial */
+    }
+
+    /* Centering Footer Links */
+    .footer .footer-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px; /* Space between links */
+        margin-top: 10px; /* Margin above the links */
+    }
+
+    .footer .footer-logo {
+        margin-bottom: 10px; /* Margin below the logo */
+    }
+
+    .footer .social-links a {
+        font-size: 1.25rem; /* Reduce icon size */
+    }
+
+     /* Make CTA Section Responsive */
+     .cta {
+        width: 90%; /* Restrict width to 90% */
+        padding: 20px 15px; /* Adjust padding for spacing */
+        margin: 20px auto; /* Center the CTA and add margin */
+        max-width: 400px; /* Set max width for better responsiveness */
+        box-sizing: border-box; /* Include padding in width */
+        border-radius: 10px; /* Adjust border radius */
+        text-align: center; /* Center-align text */
+    }
+
+    .cta h2 {
+        font-size: 1rem; /* Adjust font size */
+        margin-bottom: 10px; /* Add margin below the heading */
+    }
+
+    .cta p {
+        font-size: 1rem; /* Adjust font size */
+        margin-bottom: 15px; /* Add margin below the paragraph */
+    }
+
+    .cta .btn-primary {
+        padding: 10px 20px; /* Adjust button padding */
+        font-size: 0.9rem; /* Adjust button font size */
+        margin-top: 10px; /* Add margin above the button */
+    }
+}
+
+.listing{
+    display: flex;
+    flex-direction: row;
+}
+
+.listing img{
+    height: 50px;
+    margin-right: 15px;
+}
+
+/* .listing div {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    
+} */

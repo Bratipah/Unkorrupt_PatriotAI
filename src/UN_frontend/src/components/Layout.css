@@ -1,0 +1,43 @@
+/* src/components/Layout.css */
+
+/* Layout container */
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+Content area .content {
+  margin-left: 60px;
+  margin-bottom: 10px;
+  padding: 15px;
+  width: calc(100% - 60px);
+}
+
+
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column; 
+    width: 100%;
+  }
+  
+
+  .sidebar {
+    display: flex;
+    width: 100%; 
+    height: 60px; 
+    flex-direction: row; 
+    padding: 10px; 
+    border-radius: 30px; 
+    align-content: center;
+    vertical-align: middle;
+    
+  }
+
+  .content {
+    margin-left: 0; /* Remove left margin */
+    width: 100%; /* Make content take up the full width */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+}

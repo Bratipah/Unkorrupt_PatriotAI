@@ -1,0 +1,142 @@
+
+.p-body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;  
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column; /* Stack content vertically for better responsiveness */
+    align-items: center;
+    margin: 20px auto; /* Center the container */
+    min-height: 100vh;
+    max-width: 600px; /* Limit max width for larger screens */
+    width: 100%;
+    overflow-y: auto; /* Enable scrolling for overflow content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for some depth */
+    border-radius: 20px; /* Rounded corners for aesthetic */
+}
+
+.profile-container div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profile-header {
+    text-align: center;
+    background: url('/profile.svg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 40px 20px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+    margin: -50px auto 10px;
+    border: 4px solid #fff; /* Optional: border around the avatar for a cleaner look */
+}
+
+.profile-header h1, .profile-header p {
+    margin: 5px 0;
+    color: white;
+}
+
+.profile-options {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0; /* Add padding to separate options from the header */
+}
+
+.profile-options button {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    padding: 10px;
+    border: none;
+    background: none;
+    text-align: left;
+    margin: 5px 0;
+    transition: background 0.3s; 
+}
+
+.profile-options button:hover {
+    background-color: #f0f0f0; /* Add a hover effect */
+}
+
+.logout-button {
+    background-color: #ff4500;
+    color: white;
+    border-radius: 5px;
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center; /* Center text */
+    cursor: pointer; /* Add cursor pointer to indicate clickability */
+    transition: background 0.3s; /* Smooth transition for hover */
+}
+
+.logout-button:hover {
+    background-color: #e63900; /* Darken on hover */
+}
+
+.profile-footer {
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    padding: 20px 0;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer; /* Cursor pointer for icons */
+    transition: color 0.3s; /* Add a smooth transition on hover */
+}
+
+.icon-button:hover {
+    color: #A020F0; /* Change color on hover */
+}
+
+@media (min-width: 601px) {
+    .profile-container {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile-container {
+        max-width: 100%;
+        margin: 10px;
+        padding: 10px;
+        box-shadow: none; /* Remove shadow on smaller screens */
+        border-radius: 0; /* Remove rounded corners for a full-width look */
+    }
+
+    .profile-header {
+        padding: 30px 10px;
+    }
+
+    .profile-options button, .logout-button {
+        width: 100%;
+    }
+
+    .profile-footer {
+        width: 100%;
+    }
+
+    .p-body{
+        flex-direction: column;
+        
+    }
+}

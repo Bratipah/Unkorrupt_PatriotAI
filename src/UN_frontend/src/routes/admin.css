@@ -1,0 +1,71 @@
+.admin-container {
+  display: flex;
+  height: 100vh; /* Full height for the container */
+  flex-direction: row; /* Default layout for larger screens */
+}
+
+.content-page {
+  background: url('/flex.jpg');
+  background-size: cover;
+  flex: 1; /* Allow the content to take the remaining space */
+  border-right: 1px solid #ddd; /* Optional, for visual separation */
+}
+
+.overlay {
+  background-color: #000000ca;
+  overflow-y: auto; /* Enable scrolling for content */
+  padding: 20px;
+  height: 100%;
+}
+
+.sbar {
+  min-width: 200px; /* Fixed width for the sidebar */
+  background-color: #171923;
+  padding: 20px;
+  border-left: 1px solid #ddd; /* Optional, for visual separation */
+  overflow-y: auto; /* Enable scrolling for long content */
+}
+
+.sbar ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+}
+
+.sbar ul li {
+  margin: 10px 0; /* Space between list items */
+  cursor: pointer; /* Cursor pointer to indicate clickable items */
+}
+
+.sbar ul li:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+input[type="text"],
+textarea {
+  width: 100%; /* Full width */
+  padding: 10px; /* Space around the input */
+  border: 1px solid #ddd; /* Light border for input */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  outline: none; /* Remove outline on focus */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+input[type="text"]:focus {
+  border-color: #A020F0; /* Purple border on focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Slight glow effect */
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column; /* Stack sidebar on top of content */
+  }
+
+
+  .content-page {
+    margin-top: 5px; /* Add top margin to avoid overlap with the fixed sidebar */
+    /* padding: 0px; */
+    flex: 1; /* Make content take up the rest of the space */
+  }
+}
