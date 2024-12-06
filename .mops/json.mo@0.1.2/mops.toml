@@ -1,9 +1,0 @@
-[package]
-name = "json.mo"
-version = "0.1.2"
-description = "This is uploaded on behalf of aviate-labs. I do not own this code."
-repository = "https://github.com/aviate-labs/json.mo"
-
-[dependencies]
-"base-0.7.3" = "https://github.com/dfinity/motoko-base#aafcdee0c8328087aeed506e64aa2ff4ed329b47"
-parser-combinators = "https://github.com/aviate-labs/parser-combinators.mo#v0.1.2"
