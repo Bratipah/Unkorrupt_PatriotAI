@@ -1,0 +1,7 @@
+[package]
+name = "icrc1-types"
+version = "1.0.0"
+description = "ICRC-1 canister interface"
+repository = "https://github.com/ZenVoich/icrc1-types"
+keywords = [ "types", "icrc1", "icrc-1", "interface", "service" ]
+license = "MIT"

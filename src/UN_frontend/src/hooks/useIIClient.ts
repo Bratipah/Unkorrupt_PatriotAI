@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   AuthClient,
   AuthClientCreateOptions,
   AuthClientLoginOptions,
-} from '@dfinity/auth-client';
+} from "@dfinity/auth-client";
 import {
   type Identity,
   type Agent,
@@ -11,11 +11,12 @@ import {
   type ActorConfig,
   HttpAgent,
   Actor,
-} from '@dfinity/agent';
-import type { IDL } from '@dfinity/candid';
-import { Principal } from '@dfinity/principal';
-import { createBackendActor } from './helper/auth';
-import { LOGIN, useAuth } from './lib/AuthContext';
+  ActorSubclass,
+} from "@dfinity/agent";
+import type { IDL } from "@dfinity/candid";
+import { Principal } from "@dfinity/principal";
+import { createBackendActor } from "../helper/auth";
+import { _SERVICE } from "../../../declarations/backend/backend.did";
 
 export interface CreateActorOptions {
   /**
@@ -61,12 +62,13 @@ export type UseAuthClientOptions = {
  * @param {AuthClientCreateOptions} options.createOptions  - options passed during the creation of the auth client
  * @param {AuthClientLoginOptions} options.loginOptions -
  */
-export function useAuthClient(options?: UseAuthClientOptions) {
+export function useIIClient(options?: UseAuthClientOptions) {
   const [authClient, setAuthClient] = React.useState<AuthClient | null>(null);
   const [identity, setIdentity] = React.useState<Identity | null>(null);
-  const [actor, setActor] = React.useState<Actor | null>(null);
+  const [actor, setActor] = React.useState<ActorSubclass<_SERVICE> | null>(
+    null
+  );
   const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(false);
-  const { dispatch } = useAuth();
 
   // load the auth client on mount
   React.useEffect(() => {
@@ -80,7 +82,7 @@ export function useAuthClient(options?: UseAuthClientOptions) {
             logout();
           }),
       },
-    }).then(async client => {
+    }).then(async (client) => {
       setAuthClient(client);
       setIdentity(client.getIdentity());
       setIsAuthenticated(await client.isAuthenticated());
@@ -88,23 +90,16 @@ export function useAuthClient(options?: UseAuthClientOptions) {
   }, []);
 
   React.useEffect(() => {
-    if (identity && options?.actorOptions) {
-      createActor({
-        ...options.actorOptions,
-        agentOptions: { ...options?.actorOptions?.agentOptions, identity },
-      }).then(actor => {
-        setActor(actor);
-      });
+    if (identity) {
+      (async () => {
+        // @ts-ignore
+        setActor(await createBackendActor(identity));
+      })();
     }
   }, [identity]);
 
-  /**
-   * Login through your configured identity provider
-   * Wraps the onSuccess and onError callbacks with promises for convenience
-   * @returns {Promise<InternetIdentityAuthResponseSuccess | void>} - Returns a promise that resolves to the response from the identity provider
-   */
   async function login() {
-    const res = await new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       if (authClient) {
         const callback = options?.loginOptions?.onSuccess;
         const errorCb = options?.loginOptions?.onError;
@@ -113,55 +108,28 @@ export function useAuthClient(options?: UseAuthClientOptions) {
           onSuccess: async (successResponse?: any) => {
             setIsAuthenticated(true);
             setIdentity(authClient.getIdentity());
-            if (successResponse !== undefined) {
-              callback?.(successResponse);
-            } else {
-              callback?.(successResponse);
-            }
+            // @ts-ignore
+            setActor(await createBackendActor(identity));
+            callback?.(successResponse);
             resolve(successResponse);
           },
-          onError: error => {
+          onError: (error) => {
             errorCb?.(error);
             reject(error);
           },
         });
       }
     });
-    const actor = await createBackendActor(identity);
-    // Check if member exists
-    const member = await actor.getProfile();
-    if ((member as any).ok) {
-      dispatch({
-        type: LOGIN,
-        payload: {
-          principal: identity?.getPrincipal(),
-          member: (member as any).ok,
-        },
-      })
-    } else {
-      const member = await actor.registerUser('', '', '');
-      dispatch({
-        type: LOGIN,
-        payload: {
-          principal: identity?.getPrincipal(),
-          member: {},
-        },
-      })
-    }
   }
 
   async function logout() {
     if (authClient) {
       setIsAuthenticated(false);
       setIdentity(null);
+      setActor(null);
       await authClient.logout();
-  
-      if (options?.actorOptions) {
-        setActor(await createActor(options.actorOptions));
-      }
     }
   }
-  
 
   return {
     actor,
@@ -174,18 +142,20 @@ export function useAuthClient(options?: UseAuthClientOptions) {
 }
 
 const createActor = async (options: CreateActorOptions) => {
-  const agent = options.agent || (new HttpAgent({ ...options.agentOptions }));
+  const agent = options.agent || new HttpAgent({ ...options.agentOptions });
 
   if (options.agent && options.agentOptions) {
     console.warn(
-      'Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.',
+      "Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent."
     );
   }
 
   // Fetch root key for certificate validation during development
-  if (process.env.DFX_NETWORK !== 'ic') {
-    agent.fetchRootKey().catch(err => {
-      console.warn('Unable to fetch root key. Check to ensure that your local replica is running');
+  if (process.env.DFX_NETWORK !== "ic") {
+    agent.fetchRootKey().catch((err) => {
+      console.warn(
+        "Unable to fetch root key. Check to ensure that your local replica is running"
+      );
       console.error(err);
     });
   }

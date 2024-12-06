@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate from react-router-dom
 import "./admin.css";
-import Layout from "../components/Layout";
 import {
   Box,
   Button,
@@ -26,7 +25,6 @@ import {
   ModalOverlay,
   Select,
   Stack,
-  StackDivider,
   Tab,
   Table,
   TableContainer,
@@ -38,7 +36,6 @@ import {
   Td,
   Text,
   Textarea,
-  Tfoot,
   Th,
   Thead,
   Tr,
@@ -46,7 +43,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import CourseCard from "../components/admin/courseCard";
-import { UN_backend } from "../../../declarations/UN_backend";
+import { backend } from "../../../declarations/backend";
 import useActorLoader from "../hooks/useActorLoader";
 import {
   CourseStatus,
@@ -60,13 +57,13 @@ import { parseValues } from "../helper/parser";
 import { IoAddCircle } from "react-icons/io5";
 import ResourceCard from "../components/admin/resourseCard";
 import { FaPlus } from "react-icons/fa";
-import { createBackendActor, createClient } from "../helper/auth";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FiTrash } from "react-icons/fi";
 import { Principal } from "@dfinity/principal";
 import withAuth from "../lib/withAuth";
 import { RiAiGenerate } from "react-icons/ri";
+import { useActor } from "../hooks/useActor";
 
 const Admin = () => {
   const Pages = {
@@ -76,6 +73,8 @@ const Admin = () => {
     settings: 4,
   };
   const toast = useToast();
+
+  const { actor: backendActor } = useActor();
 
   const [selectedPage, setSelectedPage] = useState(Pages.courses);
   const [courses, setCourses] = useState([]);
@@ -96,16 +95,16 @@ const Admin = () => {
   const canisterIdRef = useRef(null);
 
   const fetcher = useCallback(async () => {
-    const response = await UN_backend.listCourses();
-    const owner = await UN_backend.getOwner();
-    const admins = await UN_backend.getAcls();
+    const response = await backend.listCourses();
+    const owner = await backend.getOwner();
+    const admins = await backend.getAcls();
     setCourses(await parseValues(response));
     setOwner(owner.toText());
     setAdmins(admins.map((item) => item.toText()));
   });
 
   const fetchQuestions = useCallback(async () => {
-    const response = await UN_backend.getCourseQuestions(
+    const response = await backend.getCourseQuestions(
       BigInt(selectedCourse.id)
     );
     if (response.err) {
@@ -123,7 +122,7 @@ const Admin = () => {
   }, [selectedCourse]);
 
   const fetchResources = useCallback(async () => {
-    const response = await UN_backend.getCourseDetails(
+    const response = await backend.getCourseDetails(
       BigInt(selectedCourse.id)
     );
     if (response.err) {
@@ -151,9 +150,7 @@ const Admin = () => {
   const handleChangeApiKey = async (apiKey) => {
     try {
       setChangingApiKey(true);
-      const authClient = await createClient();
-      const actor = await createBackendActor(authClient.getIdentity());
-      await actor.changeApiKey(apiKey);
+      await backendActor.changeApiKey(apiKey);
       apiKeyRef.current.value = "";
       toast({
         title: "API key changed successfully",
@@ -180,9 +177,7 @@ const Admin = () => {
   const handleSettingAssistantId = async (id) => {
     try {
       setSettingAssistantId(true);
-      const authClient = await createClient();
-      const actor = await createBackendActor(authClient.getIdentity());
-      await actor.setAssistantId(id);
+      await backendActor.setAssistantId(id);
       assistantIdRef.current.value = "";
       toast({
         title: "Assistant id changed successfully",
@@ -209,9 +204,7 @@ const Admin = () => {
   const handleSettingTokenCanisterId = async (id) => {
     try {
       setSettingCanisterId(true);
-      const authClient = await createClient();
-      const actor = await createBackendActor(authClient.getIdentity());
-      const response = await actor.set_icrc1_token_canister(id);
+      const response = await backendActor.set_icrc1_token_canister(id);
       if (response.ok === null) {
         canisterIdRef.current.value = "";
         toast({
@@ -264,9 +257,7 @@ const Admin = () => {
       }
       try {
         setAddingNewAdmin(true);
-        const authClient = await createClient();
-        const actor = await createBackendActor(authClient.getIdentity());
-        await actor.addAcls(newPrincipal);
+        await backendActor.addAcls(newPrincipal);
         setAdmins([...admins, newAdmin]);
         setNewAdmin(""); // Clear the input field after adding
       } catch (e) {
@@ -295,9 +286,9 @@ const Admin = () => {
 
   // Handle deleting an admin
   const handleDeleteAdmin = async (principal) => {
-    const response = await UN_backend.removeAcls(principal);
+    const response = await backend.removeAcls(principal);
     if (response.ok === null) {
-      const admins = await UN_backend.getAcls();
+      const admins = await backend.getAcls();
       setAdmins(admins.map((item) => item.toText()));
     } else {
       toast({
@@ -339,9 +330,7 @@ const Admin = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const authClient = await createClient();
-        const actor = await createBackendActor(authClient.getIdentity());
-        const response = await actor.updateCourse(
+        const response = await backendActor.updateCourse(
           BigInt(selectedCourse.id),
           values.title,
           values.summary,
@@ -408,9 +397,7 @@ const Admin = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const authClient = await createClient();
-        const actor = await createBackendActor(authClient.getIdentity());
-        const response = await actor.createResource(
+        const response = await backendActor.createResource(
           BigInt(selectedCourse.id),
           values.title,
           values.description,
@@ -473,9 +460,7 @@ const Admin = () => {
     }),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const authClient = await createClient();
-        const actor = await createBackendActor(authClient.getIdentity());
-        const response = await actor.createCourse(values.title, values.summary);
+        const response = await backendActor.createCourse(values.title, values.summary);
         if (response.ok) {
           toast({
             title: "Course created successfully",
@@ -513,10 +498,8 @@ const Admin = () => {
 
   // Generate questions
   async function pollRunStatus(runId) {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     while (true) {
-      const response = await actor.getRunStatus(runId);
+      const response = await backendActor.getRunStatus(runId);
       console.log("PollRunStatus", response);
       if (response.ok) {
         const enumStatus = getEnum(response.ok, RunStatus);
@@ -535,9 +518,7 @@ const Admin = () => {
   }
 
   async function getRunQuestions(runId) {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
-    const response = await actor.getRunQuestions(runId);
+    const response = await backendActor.getRunQuestions(runId);
     if (response.ok) {
       return response.ok;
     } else {
@@ -554,11 +535,9 @@ const Admin = () => {
   }
 
   async function generateCourseQuestions(courseId) {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     try {
       setIsGenerating(true);
-      const response = await actor.generateQuestionsForCourse(courseId);
+      const response = await backendActor.generateQuestionsForCourse(courseId);
       console.log("generateCourseQuestions", response);
       if (response.ok.Completed) {
         const runId = response.ok.Completed.runId;

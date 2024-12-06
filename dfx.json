@@ -5,7 +5,7 @@
       "candid": "https://raw.githubusercontent.com/dfinity/ic/7dee90107a88b836fc72e78993913988f4f73ca2/rs/rosetta-api/icrc1/ledger/ledger.did",
       "wasm": "https://download.dfinity.systems/ic/7dee90107a88b836fc72e78993913988f4f73ca2/canisters/ic-icrc1-ledger.wasm.gz"
     },
-    "UN_backend": {
+    "backend": {
       "main": "src/UN_backend/main.mo",
       "type": "motoko"
     },
@@ -13,16 +13,16 @@
       "type": "pull",
       "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
     },
-    "UN_frontend": {
+    "frontend": {
       "dependencies": [
-        "UN-backend",
+        "backend",
         "internet-identity"
       ],
       "source": [
-        "src/UN_frontend/dist"
+        "src/frontend/dist"
       ],
       "type": "assets",
-      "workspace": "UN_frontend"
+      "workspace": "frontend"
     }
   },
   "defaults": {

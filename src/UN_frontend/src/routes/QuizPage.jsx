@@ -4,17 +4,17 @@ import "./quiz.css";
 import Layout from "../components/Layout";
 import withAuth from "../lib/withAuth";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { UN_backend } from "../../../declarations/UN_backend";
+import { backend } from "../../../declarations/backend";
 import { Box, Center, Spinner, Text, useToast } from "@chakra-ui/react";
 import { parseValues } from "../helper/parser";
-import { createBackendActor, createClient } from "../helper/auth";
+import { useActor } from "../hooks/useActor";
 
 const Quiz = () => {
+  const { actor } = useActor();
   const toast = useToast();
   const navigate = useNavigate();
   const { courseId } = useParams();
   const location = useLocation();
-  const courseTitle = location.state?.title || `Course ${courseId}`;
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(false);
 
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -61,8 +61,6 @@ const Quiz = () => {
 
       try {
         setIsSubmitting(true);
-        const authClient = await createClient();
-        const actor = await createBackendActor(authClient.getIdentity());
         const response = await actor.submitQuestionsAttempt(
           parseInt(courseId),
           selectedAnswers
@@ -105,7 +103,7 @@ const Quiz = () => {
   // Load course questions
   async function loadQuestions() {
     setIsLoadingQuestions(true);
-    const response = await UN_backend.getRandomCourseQuestions(
+    const response = await backend.getRandomCourseQuestions(
       parseInt(courseId),
       5
     );

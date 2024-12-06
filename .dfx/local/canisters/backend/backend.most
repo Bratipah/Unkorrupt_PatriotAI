@@ -1,0 +1,120 @@
+// Version: 1.0.0
+type Course =
+  {
+    enrolledCount : Nat;
+    id : Nat;
+    nextQuestionId : Nat;
+    nextResourceId : Nat;
+    questions : Vector__1<Question>;
+    reportCount : Nat;
+    resources : Vector__1<Resource>;
+    status : CourseStatus;
+    summary : Text;
+    title : Text
+  };
+type CourseStatus = {#Approved; #InFix; #InReview; #Rejected};
+type Course__1 = Course;
+type EnrolledCourse =
+  {
+    completed : Bool;
+    id : Nat;
+    messages : Vector__1<Message>;
+    threadId : Text
+  };
+type Message = {content : Text; role : MessgeType; runId : ?Text};
+type MessgeType = {#System; #User};
+type Question =
+  {
+    correctOption : Nat;
+    description : Text;
+    id : Nat;
+    options : [QuestionOption]
+  };
+type QuestionOption = {description : Text; option : Nat};
+type Report =
+  {
+    category : Text;
+    country : Text;
+    details : Text;
+    id : Nat;
+    image : Blob;
+    owner : Principal;
+    state : Text;
+    upvotes : Nat
+  };
+type Report__1 = Report;
+type Resource =
+  {
+    description : Text;
+    id : Nat;
+    rType : ResourceType;
+    title : Text;
+    url : Text
+  };
+type ResourceType = {#Article; #Book; #Report; #Slides; #Video};
+type RunStatus = {#Cancelled; #Completed; #Expired; #Failed; #InProgress};
+type ThreadRun =
+  {
+    job : ThreadRunJob;
+    lastExecuted : ?Time;
+    var processing : Bool;
+    runId : Text;
+    status : RunStatus;
+    threadId : Text;
+    timestamp : Time
+  };
+type ThreadRunJob = {#Message; #Question};
+type ThreadRun__1 = ThreadRun;
+type Time = Int;
+type User =
+  {
+    country : Text;
+    enrolledCourses : Vector__1<EnrolledCourse>;
+    id : Nat;
+    state : Text;
+    username : Text
+  };
+type User__1 = User;
+type Vector<X> =
+  {var data_blocks : [var [var ?X]]; var i_block : Nat; var i_element : Nat};
+type Vector__1<T> = Vector<T>;
+actor {
+  stable var API_KEY : Text;
+  stable var ASSISTANT_ID : Text;
+  stable var acls :
+    {
+      var data_blocks : [var [var ?Principal]];
+      var i_block : Nat;
+      var i_element : Nat
+    };
+  stable var courseThreads :
+    [var ?([var ?Nat], [var ?Text], [var Nat], [var Nat32])];
+  stable courses :
+    {
+      var data_blocks : [var [var ?Course__1]];
+      var i_block : Nat;
+      var i_element : Nat
+    };
+  stable var icrc1TokenCanisterId_ : Text;
+  stable members :
+    [var ?([var ?Principal], [var ?User__1], [var Nat], [var Nat32])];
+  stable var nextCourseId : Nat;
+  stable var nextReportId : Nat;
+  stable var nextUserId : Nat;
+  stable var owner : Principal;
+  stable reportUpvotes :
+    {
+      var data_blocks : [var [var ?Vector<Principal>]];
+      var i_block : Nat;
+      var i_element : Nat
+    };
+  stable reports :
+    {
+      var data_blocks : [var [var ?Report__1]];
+      var i_block : Nat;
+      var i_element : Nat
+    };
+  stable var seed : Nat32;
+  stable var threadRunQueue :
+    [var ?([var ?Text], [var ?ThreadRun__1], [var Nat], [var Nat32])]
+};

@@ -1,5 +1,5 @@
 import { AuthClient } from "@dfinity/auth-client";
-import { createActor } from "../../../declarations/UN_backend";
+import { createActor } from "../../../declarations/backend";
 
 /**
  * Get the identity provider URL
@@ -18,6 +18,13 @@ export const getIdentityProvider = () => {
 
   return `http://${process.env.CANISTER_ID_INTERNET_IDENTITY}.localhost:4943`;
 };
+
+export function getHost() {
+  if (process.env.DFX_NETWORK === "ic") {
+    return `https://${process.env.CANISTER_ID_UN_FRONTEND}.icp0.io`
+  }
+  return "http://127.0.0.1:4943";
+}
 
 /**
  * Create an auth client
@@ -42,3 +49,12 @@ export async function createBackendActor(identity) {
     },
   });
 }
+
+export const WHITELIST = [CANISTER_ID_UN_BACKEND];
+export const HOST = getHost();
+
+export const AUTH_PROVIDERS = {
+  II: "II",
+  PLUG: "PLUG",
+  NFID: "NFID",
+};

@@ -1,9 +1,8 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import "./reportspage.css";
 import Layout from "../components/Layout";
-import { UN_backend } from "../../../declarations/UN_backend";
+import { backend } from "../../../declarations/backend";
 import { parseValues } from "../helper/parser";
-import { createBackendActor, createClient } from "../helper/auth";
 import withAuth from "../lib/withAuth";
 import {
   Box,
@@ -32,6 +31,7 @@ import {
   getCountryName,
   getStateName,
 } from "../helper/countries";
+import { useActor } from "../hooks/useActor";
 
 const PieChart = lazy(() => import("../components/PieChart"));
 const BarChart = lazy(() => import("../components/BarChart"));
@@ -42,6 +42,7 @@ Chart.register(Colors);
 Chart.defaults.color = "#fff";
 
 const ReportsPage = () => {
+  const { actor } = useActor();
   // Hardcoded data with the same image for all reports
   const [reports, setReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState(null);
@@ -161,8 +162,6 @@ const ReportsPage = () => {
   }, [reports]);
 
   const upvoteReport = async (id) => {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     setIsLoading(true);
     try {
       const response = await actor.upvoteReport(id);
@@ -201,7 +200,7 @@ const ReportsPage = () => {
   useEffect(() => {
     // Load reports
     async function load() {
-      const response = await UN_backend.listReports("");
+      const response = await backend.listReports("");
       setReports(await parseValues(response));
     }
     load();

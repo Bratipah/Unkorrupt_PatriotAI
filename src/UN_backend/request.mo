@@ -39,7 +39,7 @@ module Request {
       case (null) { #Object([("error", #String("No response"))]) };
       case (?y) {
         // Clean y
-        let t = Text.replace(y, #text "1.0", "1");
+        let t = Text.replace(y, #text ".0", "");
         switch (JSON.parse(t)) {
           case (null) {
             #Object([("error", #String("Invalid json string: " # y))]);

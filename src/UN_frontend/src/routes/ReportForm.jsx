@@ -14,14 +14,14 @@ import {
   Textarea,
   useToast,
 } from "@chakra-ui/react";
-import { createActor, UN_backend } from "../../../declarations/UN_backend";
 import withAuth from "../lib/withAuth";
-import { useAuthClient } from "../use-auth-client";
-import { createBackendActor, createClient } from "../helper/auth";
+import { useAuthClient } from "../hooks/useIIClient";
 import { Link } from "react-router-dom";
 import { Categories } from "../helper/enum";
+import { useActor } from "../hooks/useActor";
 
 const ReportForm = () => {
+  const { actor } = useActor();
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -92,8 +92,6 @@ const ReportForm = () => {
         });
       setIsLoading(true);
       try {
-        const authClient = await createClient();
-        const actor = await createBackendActor(authClient.getIdentity());
         const response = await actor.createReport(
           values.country,
           values.state,

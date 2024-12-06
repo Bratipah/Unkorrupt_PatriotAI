@@ -31,7 +31,6 @@ shared ({ caller }) actor class Backend() {
   type User = Types.User;
   type SharedUser = Types.SharedUser;
   type Course = Types.Course;
-type coursedetails = Types.course 
   type Question = Types.Question;
   type ResourceType = Types.ResourceType;
   type CourseStatus = Types.CourseStatus;

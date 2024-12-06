@@ -5,20 +5,21 @@ import { FaPlay } from "react-icons/fa";
 import Layout from "../components/Layout";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { UN_backend } from "../../../declarations/UN_backend";
+import { backend } from "../../../declarations/backend";
 import { CourseStatus } from "../helper/enum";
 import useActorLoader from "../hooks/useActorLoader";
 import { Center, Spinner, useToast } from "@chakra-ui/react";
-import { createBackendActor, createClient } from "../helper/auth";
 import withAuth from "../lib/withAuth";
+import { useActor } from "../hooks/useActor";
 
 const CoursePage = () => {
+  const { actor } = useActor();
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [isLoadingEnroll, setIsLoadingEnroll] = useState(false);
 
   const fetcher = useCallback(async () => {
-    const response = await UN_backend.listCoursesByStatus(
+    const response = await backend.listCoursesByStatus(
       CourseStatus.Approved
     );
     setCourses(response);
@@ -30,8 +31,6 @@ const CoursePage = () => {
   const handleSelectCourse = async (course) => {
     // Try to enroll user in course
     setIsLoadingEnroll(true);
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     try {
       const response = await actor.enrollCourse(course.id);
       if (response.ok) {

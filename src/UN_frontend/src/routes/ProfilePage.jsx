@@ -5,14 +5,15 @@ import { FiArrowLeft, FiBarChart2 } from "react-icons/fi";
 import { BiCheck, BiMessageSquareDetail } from "react-icons/bi";
 import Layout from "../components/Layout";
 import withAuth from "../lib/withAuth";
-import { useAuthClient } from "../use-auth-client";
-import { Center, Spinner, Text, useToast, Button, Box } from "@chakra-ui/react"; // Added Box from Chakra UI
-import { createBackendActor, createClient } from "../helper/auth";
+import { useAuthClient } from "../hooks/useIIClient";
+import { Center, Spinner, Text, useToast, Button, Box } from "@chakra-ui/react";
 import { parseValues } from "../helper/parser";
 import { createLedgerCanister } from "../helper/ledger";
 import { IcrcMetadataResponseEntries } from "@dfinity/ledger-icrc";
+import { useActor } from "../hooks/useActor";
 
 const ProgressPage = () => {
+  const { actor } = useActor();
   const toast = useToast();
   const { identity } = useAuthClient();
   const navigate = useNavigate();
@@ -30,8 +31,6 @@ const ProgressPage = () => {
   };
 
   const fetcher = useCallback(async () => {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     setIsLoading(true);
     const response = await actor.getUserEnrolledCourses();
     setIsLoading(false);

@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "./chatpage.css";
 import { FaArrowLeft } from "react-icons/fa";
-import { UN_backend } from "../../../declarations/UN_backend";
+import { backend } from "../../../declarations/backend";
 import Layout from "../components/Layout";
 import withAuth from "../lib/withAuth";
-import { createBackendActor, createClient } from "../helper/auth";
 import { getEnum, MessgeType, RunStatus } from "../helper/enum";
 import {
   Box,
@@ -21,8 +20,10 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { IoHelp } from "react-icons/io5";
 import { FiHelpCircle } from "react-icons/fi";
+import { useActor } from "../hooks/useActor";
 
 const ChatPage = () => {
+  const { actor } = useActor();
   const { courseId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,8 +39,6 @@ const ChatPage = () => {
   const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
   async function pollRunStatus(runId) {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     while (true) {
       const response = await actor.getRunStatus(runId);
       console.log("PollRunStatus", response);
@@ -60,8 +59,6 @@ const ChatPage = () => {
   }
 
   async function getRunMessage(runId) {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     const response = await actor.getRunMessage(runId);
     if (response.ok) {
       return response.ok.content;
@@ -79,8 +76,6 @@ const ChatPage = () => {
   }
 
   async function sendThreadMessage(threadId, message) {
-    const authClient = await createClient();
-    const actor = await createBackendActor(authClient.getIdentity());
     try {
       console.log("got here", threadId);
       setIsSending(true);
@@ -162,12 +157,10 @@ const ChatPage = () => {
     // Load course details
     async function load() {
       setIsLoading(true);
-      const response = await UN_backend.getCourseDetails(parseInt(courseId));
+      const response = await backend.getCourseDetails(parseInt(courseId));
       console.log("Course details", response);
       if (response.ok) {
         setCourse(await parseValue(response.ok));
-        const authClient = await createClient();
-        const actor = await createBackendActor(authClient.getIdentity());
         const enrolledData = await actor.getUserEnrolledCourse(
           parseInt(courseId)
         );

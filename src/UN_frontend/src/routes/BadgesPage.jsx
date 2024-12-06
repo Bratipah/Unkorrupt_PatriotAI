@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import "./badges.css";
 import Layout from "../components/Layout";
 import withAuth from "../lib/withAuth";
-import { useAuthClient } from "../use-auth-client";
+import { useAuthClient } from "../hooks/useIIClient";
 import { Center, Spinner, Text, Box } from "@chakra-ui/react";
-import { createBackendActor, createClient } from "../helper/auth";
+import { useActor } from "../hooks/useActor";
 
 const BadgesPage = () => {
-  const { identity } = useAuthClient();
+  const { actor } = useActor();
   const navigate = useNavigate();
   const [badges, setBadges] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,8 +16,6 @@ const BadgesPage = () => {
   const fetchBadges = useCallback(async () => {
     setIsLoading(true);
     try {
-      const authClient = await createClient();
-      const actor = await createBackendActor(authClient.getIdentity());
       const response = await actor.getUserBadges(); // Assume getUserBadges fetches badges
       setIsLoading(false);
       if (response.err) {

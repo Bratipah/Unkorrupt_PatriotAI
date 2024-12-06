@@ -1,0 +1,12 @@
+[dependencies]
+"base-0.7.3" = "https://github.com/dfinity/motoko-base#aafcdee0c8328087aeed506e64aa2ff4ed329b47@aafcdee0c8328087aeed506e64aa2ff4ed329b47"
+encoding = "https://github.com/aviate-labs/encoding.mo#v0.4.1@2711d18727e954b11afc0d37945608512b5fbce2"
+io = "https://github.com/aviate-labs/io.mo#v0.3.2@139d9600da724a1e07651d0bf733c40787642e48"
+
+[package]
+name = "uuid"
+version = "1.0.0"
+description = "package for uuid"
+repository = "https://github.com/aviate-labs/uuid.mo"
+keywords = [ "uuid" ]
+license = "Apache-2.0"

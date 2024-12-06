@@ -1,7 +1,7 @@
 import { IcrcLedgerCanister } from "@dfinity/ledger-icrc";
 import { createAgent } from "@dfinity/utils";
 import { createClient } from "./auth";
-import { UN_backend } from "../../../declarations/UN_backend";
+import { backend } from "../../../declarations/backend";
 
 /**
  * Create an ICRC ledger canister
@@ -14,7 +14,7 @@ export async function createLedgerCanister() {
   }
 
   const MY_LEDGER_CANISTER_ID =
-    await UN_backend.get_icrc1_token_canister_id();
+    await backend.get_icrc1_token_canister_id();
   
   const agent = await createAgent({
     identity: client.getIdentity(),
