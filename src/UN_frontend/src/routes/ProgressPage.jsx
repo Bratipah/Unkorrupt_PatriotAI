@@ -5,7 +5,7 @@ import { FiArrowLeft, FiBarChart2 } from "react-icons/fi";
 import { BiCheck, BiMessageSquareDetail } from "react-icons/bi";
 import Layout from "../components/Layout";
 import withAuth from "../lib/withAuth";
-import { useAuthClient } from "../hooks/useIIClient";
+import { useIIClient } from "../hooks/useIIClient";
 import { Center, Spinner, Text, useToast, Button, Box } from "@chakra-ui/react";
 import { parseValues } from "../helper/parser";
 import { createLedgerCanister } from "../helper/ledger";
@@ -15,7 +15,7 @@ import { useActor } from "../hooks/useActor";
 const ProgressPage = () => {
   const toast = useToast();
   const { actor } = useActor();
-  const { identity } = useAuthClient();
+  const { identity } = useIIClient();
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

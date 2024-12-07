@@ -7,15 +7,8 @@ import { useIIClient } from "./useIIClient";
 import { idlFactory, canisterId } from "../../../declarations/backend";
 import { AUTH_PROVIDERS, getIdentityProvider } from "../helper/auth";
 import { usePlugClient } from "./usePlugClient";
-import { _SERVICE } from "../../../declarations/backend/backend.did";
+import { _SERVICE } from "../../../declarations/backend/backend.did.js";
 
-/**
- * React hook to set up the Internet Computer auth client
- * @param {UseAuthClientOptions} options configuration for the hook
- * @see {@link UseAuthClientOptions}
- * @param {AuthClientCreateOptions} options.createOptions  - options passed during the creation of the auth client
- * @param {AuthClientLoginOptions} options.loginOptions -
- */
 export function useActor() {
   const [principal, setPrincipal] = React.useState<Principal | null>(null);
   const [actor, setActor] = React.useState<ActorSubclass<_SERVICE> | null>(null);

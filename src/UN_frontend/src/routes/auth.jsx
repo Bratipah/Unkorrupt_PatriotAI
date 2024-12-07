@@ -3,8 +3,6 @@ import { idlFactory, canisterId } from "../../../declarations/backend";
 import { useIIClient } from "../hooks/useIIClient";
 import { useNavigate } from "react-router-dom";
 import "./Auth.css"; // Import the CSS file
-import { _SERVICE } from "../../../declarations/backend/backend.did";
-import { ActorSubclass } from "@dfinity/agent";
 import { LOGIN, useAuth } from "../lib/AuthContext";
 import { AUTH_PROVIDERS, getIdentityProvider } from "../helper/auth";
 import { usePlugClient } from "../hooks/usePlugClient";
@@ -20,7 +18,7 @@ function Auth() {
    *
    * @async
    * @function completeAuth
-   * @param {ActorSubclass<_SERVICE>} actor - The backend actor
+   * @param {import("@dfinity/agent").ActorSubclass<import("../../../declarations/backend/backend.did")._SERVICE>} actor - The backend actor
    * @param {Principal} principal - The principal of the user
    * @param {string} authProvider - The authentication provider used
    */
@@ -43,18 +41,23 @@ function Auth() {
       dispatch({
         type: LOGIN,
         payload: {
-          principal: principal,
-          member: {},
+          user: {
+            principal: principal,
+            member: {},
+          },
+          authProvider,
         },
       });
     }
   }
 
-  const { login: iiLogin, actor: iiActor, identity: iIdentity } = useIIClient({
+
+  const { login: iiLogin, actor: iiActor, identity: iIdentity, isAuthenticated: iiIsAuth } = useIIClient({
     loginOptions: {
-      onSuccess: useCallback(() => {
-        completeAuth(iiActor, iIdentity.getPrincipal(), AUTH_PROVIDERS.II);
-      }, [iiActor, iIdentity]),
+      identityProvider: getIdentityProvider(),
+      onSuccess: (actor, identity) => {
+        completeAuth(actor, identity.getPrincipal(), AUTH_PROVIDERS.II)
+      },
       onError: (error) => {
         toast({
           title: "Error",
@@ -71,16 +74,19 @@ function Auth() {
     },
   });
 
-  const { login: plugLogin, actor: plugActor, principal: plugPrincipal } = usePlugClient({
+  const { login: plugLogin, actor: plugActor, principal: plugPrincipal, isAuthenticated: plugIsAuth } = usePlugClient({
     loginOptions: {
-      identityProvider: getIdentityProvider(),
-      onSuccess: useCallback(() => {
-        completeAuth(plugActor, plugPrincipal, AUTH_PROVIDERS.PLUG);
-      }, [plugActor, plugPrincipal])
+      onSuccess: (actor, principal) => {
+        completeAuth(actor, principal, AUTH_PROVIDERS.PLUG);
+      },
     },
   });
 
   const [whoamiText, setWhoamiText] = useState("");
+
+  const isAuthenticated = iiIsAuth || plugIsAuth;
+
+  console.log(iiIsAuth, plugIsAuth);
 
   return (
     <main className="auth-main">

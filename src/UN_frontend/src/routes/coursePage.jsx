@@ -19,6 +19,7 @@ const CoursePage = () => {
   const [isLoadingEnroll, setIsLoadingEnroll] = useState(false);
 
   const fetcher = useCallback(async () => {
+    console.log("Fetching courses");
     const response = await backend.listCoursesByStatus(
       CourseStatus.Approved
     );

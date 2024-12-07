@@ -7,6 +7,7 @@ export default function useActorLoader(fetcher) {
 
   useEffect(() => {
     async function load() {
+      console.log("Loading actor");
       setIsLoading(true);
       try {
         await fetcher();

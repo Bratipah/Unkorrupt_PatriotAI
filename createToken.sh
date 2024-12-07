@@ -21,7 +21,7 @@ export TOKEN_NAME="Unkorrupt"
 export TOKEN_SYMBOL="UNK"
 
 # Make the canister the minter so can mint new tokens to users
-export MINTER=$(dfx canister id UN_backend --ic)
+export MINTER=$(dfx canister id backend --network local)
 
 export FEATURE_FLAGS=true
 
@@ -43,6 +43,4 @@ record {
          cycles_for_archive_creation = opt ${CYCLE_FOR_ARCHIVE_CREATION};
      };
  }
-})" --network ic
-moncm-xhwy2-4clkt-pr3qp-ndzhp-irwng-lmlj3-5myps-45z73-u54iv-mae
-3q2ak-3juch-whtsj-xdkao-ktb2i-gpa6n-uhgzc-zp7vf-sygw7-nrj2j-hqe
+})" --network local

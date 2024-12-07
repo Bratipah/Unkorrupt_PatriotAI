@@ -15,7 +15,7 @@ import { idlFactory, backend } from "../../../declarations/backend";
  * Authentication state managed by the useIIClient hook
  * 
  * @typedef {Object} AuthState
- * @property {import('@dfinity/agent').ActorSubclass<import('../../../declarations/backend/backend.did')._SERVICE> | null} actor - The backend actor for making canister calls
+ * @property {import('@dfinity/agent').ActorSubclass<import('../../../declarations/backend/backend.did.js')._SERVICE> | null} actor - The backend actor for making canister calls
  * @property {import('@dfinity/principal').Principal | null} principal - The authenticated user's principal
  * @property {boolean} isAuthenticated - Flag indicating whether the user is currently authenticated
  */
@@ -37,7 +37,7 @@ import { idlFactory, backend } from "../../../declarations/backend";
 export function usePlugClient(options) {
   const [principal, setPrincipal] = React.useState(null);
   const [actor, setActor] = React.useState(null);
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(null);
 
   function hasPlug() {
     return window.ic?.plug !== undefined;
@@ -62,17 +62,17 @@ export function usePlugClient(options) {
     }
 
     // Fetch root key for certificate validation during development
-    if (process.env.DFX_NETWORK !== "ic") {
-      window.ic.plug.agent.fetchRootKey().catch((err) => {
-        console.warn(
-          "Unable to fetch root key. Check to ensure that your local replica is running"
-        );
-        console.error(err);
-      });
-    }
+    // if (process.env.DFX_NETWORK !== "ic") {
+    //   window.ic.plug.agent.fetchRootKey().catch((err) => {
+    //     console.warn(
+    //       "Unable to fetch root key. Check to ensure that your local replica is running"
+    //     );
+    //     console.error(err);
+    //   });
+    // }
 
     const backendActor = await window.ic?.plug.createActor({
-      canisterId: BACKEND_CANISTER_ID,
+      canisterId: process.env.CANISTER_ID_BACKEND,
       interfaceFactory: idlFactory,
     });
 
@@ -92,11 +92,13 @@ export function usePlugClient(options) {
         const actor = await createActor();
         if (actor) {
           setPrincipal(await plug.getPrincipal());
-          setIsAuthenticated(await client.isAuthenticated());
+          setIsAuthenticated(true);
           setActor(actor);
         } else {
           logout();
         }
+      } else {
+        setIsAuthenticated(false);
       }
     })();
   }, []);
@@ -114,10 +116,10 @@ export function usePlugClient(options) {
 
     const plugConnected = await plug.isConnected();
     if (!plugConnected) {
+      console.log("WHITELIST", WHITELIST);
       try {
         await plug.requestConnect({
           whitelist: WHITELIST,
-          host: HOST,
         });
         console.log("plug connected");
       } catch (e) {
@@ -138,7 +140,7 @@ export function usePlugClient(options) {
     setPrincipal(await plug.getPrincipal());
     setIsAuthenticated(true);
 
-    successCb && successCb();
+    successCb && successCb(actor, principal);
   }
 
   async function logout() {

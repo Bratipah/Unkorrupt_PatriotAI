@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./badges.css";
-import Layout from "../components/Layout";
 import withAuth from "../lib/withAuth";
-import { useAuthClient } from "../hooks/useIIClient";
 import { Center, Spinner, Text, Box } from "@chakra-ui/react";
 import { useActor } from "../hooks/useActor";
 

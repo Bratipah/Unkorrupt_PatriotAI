@@ -1,11 +1,12 @@
 import { LOGIN, LOGOUT, useAuth } from "./AuthContext";
 import { useEffect } from "react";
 import {
+  AUTH_PROVIDERS,
   createBackendActor,
   createClient,
   getIdentityProvider,
 } from "../helper/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Box, Center, Spinner, useToast } from "@chakra-ui/react";
 import { backend, idlFactory, canisterId } from "../../../declarations/backend";
 import { useIIClient } from "../hooks/useIIClient";
@@ -25,6 +26,7 @@ function withAuth(Component) {
     const { state, dispatch } = useAuth();
     const toast = useToast();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const {
       actor: iiActor,
@@ -56,6 +58,7 @@ function withAuth(Component) {
      * @param {string} authProvider - The authentication provider used
      */
     async function completeAuth(actor, principal, authProvider) {
+      console.log("Completing authentication for " + authProvider);
       // Check if member exists
       const member = await actor.getProfile();
       if (member.ok) {
@@ -74,8 +77,11 @@ function withAuth(Component) {
         dispatch({
           type: LOGIN,
           payload: {
-            principal: principal,
-            member: {},
+            user: {
+              principal: principal,
+              member: {},
+            },
+            authProvider,
           },
         });
       }
@@ -83,16 +89,26 @@ function withAuth(Component) {
 
     useEffect(() => {
       async function checkAuthenticated() {
+        console.log("Checking authentication");
+        console.log(iiIsAuthenticated, plugIsAuthenticated);
+        if (iiIsAuthenticated === null || plugIsAuthenticated === null) {
+          return;
+        }
+        console.log(iiIsAuthenticated, plugIsAuthenticated);
         if (iiIsAuthenticated || plugIsAuthenticated) {
-          switch (state.authProvider) {
-            case AUTH_PROVIDERS.II:
-              await completeAuth(iiActor, iIdentity.getPrincipal(), AUTH_PROVIDERS.II);
-              break;
-            case AUTH_PROVIDERS.PLUG:
-              await completeAuth(plugActor, plugPrincipal, AUTH_PROVIDERS.PLUG);
-              break;
+          if (iiIsAuthenticated) {
+            await completeAuth(
+              iiActor,
+              iIdentity.getPrincipal(),
+              AUTH_PROVIDERS.II
+            );
+          } else if (plugIsAuthenticated) {
+            await completeAuth(plugActor, plugPrincipal, AUTH_PROVIDERS.PLUG);
           }
         } else {
+          if (window.location.pathname === "/auth") {
+            return;
+          }
           toast({
             title: "You are not logged in",
             status: "error",
@@ -106,7 +122,7 @@ function withAuth(Component) {
         }
       }
       checkAuthenticated();
-    }, [dispatch]);
+    }, [dispatch, iiIsAuthenticated, plugIsAuthenticated]);
 
     if (state.isAuthenticated) {
       return <Component {...props} />;

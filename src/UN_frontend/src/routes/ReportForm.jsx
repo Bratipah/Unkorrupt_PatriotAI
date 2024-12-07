@@ -15,7 +15,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import withAuth from "../lib/withAuth";
-import { useAuthClient } from "../hooks/useIIClient";
+import { useIIClient } from "../hooks/useIIClient";
 import { Link } from "react-router-dom";
 import { Categories } from "../helper/enum";
 import { useActor } from "../hooks/useActor";
@@ -46,7 +46,7 @@ const ReportForm = () => {
     });
   }
 
-  const { identity } = useAuthClient();
+  const { identity } = useIIClient();
 
   const formik = useFormik({
     initialValues: {

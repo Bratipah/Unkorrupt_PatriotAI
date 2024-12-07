@@ -21,7 +21,7 @@ export const getIdentityProvider = () => {
 
 export function getHost() {
   if (process.env.DFX_NETWORK === "ic") {
-    return `https://${process.env.CANISTER_ID_UN_FRONTEND}.icp0.io`
+    return `https://${process.env.CANISTER_ID_FRONTEND}.icp0.io`
   }
   return "http://127.0.0.1:4943";
 }
@@ -43,14 +43,14 @@ export async function createClient() {
  * @param identity
  */
 export async function createBackendActor(identity) {
-  return createActor(process.env.CANISTER_ID_UN_BACKEND, {
+  return createActor(process.env.CANISTER_ID_BACKEND, {
     agentOptions: {
       identity,
     },
   });
 }
 
-export const WHITELIST = [CANISTER_ID_UN_BACKEND];
+export const WHITELIST = [process.env.CANISTER_ID_BACKEND];
 export const HOST = getHost();
 
 export const AUTH_PROVIDERS = {

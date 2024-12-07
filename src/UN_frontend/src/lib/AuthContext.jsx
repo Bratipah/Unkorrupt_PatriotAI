@@ -38,6 +38,7 @@ export const LOGOUT = "LOGOUT";
 const authReducer = (state, action) => {
   switch (action.type) {
     case LOGIN:
+      console.log(action.payload);
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("user", JSON.stringify({
         principal: action.payload.user.principal.toText(),

@@ -16,7 +16,7 @@ import {
 import type { IDL } from "@dfinity/candid";
 import { Principal } from "@dfinity/principal";
 import { createBackendActor } from "../helper/auth";
-import { _SERVICE } from "../../../declarations/backend/backend.did";
+import { _SERVICE } from "../../../declarations/backend/backend.did.js";
 
 export interface CreateActorOptions {
   /**
@@ -68,7 +68,7 @@ export function useIIClient(options?: UseAuthClientOptions) {
   const [actor, setActor] = React.useState<ActorSubclass<_SERVICE> | null>(
     null
   );
-  const [isAuthenticated, setIsAuthenticated] = React.useState<boolean>(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState<boolean | null>(null);
 
   // load the auth client on mount
   React.useEffect(() => {
@@ -83,6 +83,7 @@ export function useIIClient(options?: UseAuthClientOptions) {
           }),
       },
     }).then(async (client) => {
+      console.log("Created II auth client");
       setAuthClient(client);
       setIdentity(client.getIdentity());
       setIsAuthenticated(await client.isAuthenticated());
@@ -105,12 +106,15 @@ export function useIIClient(options?: UseAuthClientOptions) {
         const errorCb = options?.loginOptions?.onError;
         authClient.login({
           ...options?.loginOptions,
+          windowOpenerFeatures: "toolbar=0,location=0,menubar=0,width=500,height=500,left=100,top=100",
           onSuccess: async (successResponse?: any) => {
             setIsAuthenticated(true);
             setIdentity(authClient.getIdentity());
+            const actor = await createBackendActor(identity);
             // @ts-ignore
-            setActor(await createBackendActor(identity));
-            callback?.(successResponse);
+            setActor(actor);
+            // @ts-ignore
+            callback?.( actor, identity, successResponse);
             resolve(successResponse);
           },
           onError: (error) => {

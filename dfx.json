@@ -19,7 +19,7 @@
         "internet-identity"
       ],
       "source": [
-        "src/frontend/dist"
+        "src/UN_frontend/dist"
       ],
       "type": "assets",
       "workspace": "frontend"
